@@ -1,6 +1,7 @@
 package com.example.httpMethods.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,6 +9,7 @@ public class StudentModel {
 
     private String name;
 
+    @JsonIgnore
     private int age;
 
     @Override
