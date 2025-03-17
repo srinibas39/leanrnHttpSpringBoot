@@ -21,6 +21,11 @@ public class MyController {
         return List.of("ashwin", "anshuman", "mitu");
     }
 
+    @PostMapping("/createUser")
+    public String createUser(){
+        return "User created";
+    }
+
 
 }
 
