@@ -2,6 +2,7 @@ package com.example.httpMethods.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,10 +30,12 @@ public class StudentModel {
         this.name = name;
     }
 
+    @JsonProperty
     public int getAge() {
         return age;
     }
 
+    @JsonIgnore
     public void setAge(int age) {
         this.age = age;
     }

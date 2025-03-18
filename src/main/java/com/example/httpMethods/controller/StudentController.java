@@ -1,8 +1,12 @@
 package com.example.httpMethods.controller;
 
 import com.example.httpMethods.model.StudentModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,10 +32,23 @@ public class StudentController {
     }
 
     @PostMapping("/createStudents")
-    public List<StudentModel> createStudents(@RequestBody List<StudentModel> students){
-        System.out.println(students);
+    public ResponseEntity<List<StudentModel>> createStudents(@RequestBody List<StudentModel> students){
+        System.out.println(students.get(0));
 
-        return students;
+//        Map<String , Object> maps = new HashMap<>();
+//        maps.put("status","success");
+//        maps.put("myData",students);
+//        maps.put("date",new Date());
+//        maps.put("System Infomation",System.getProperties());
+
+//        StudentModel s1 = students.get(0);
+//        s1.setAge(22);
+
+        ResponseEntity<List<StudentModel>> response1 = new ResponseEntity<>(students, HttpStatus.CREATED);
+        ResponseEntity<List<StudentModel>> response2 = ResponseEntity.status(HttpStatus.CREATED).body(students);
+        return response2;
+
+//        return s1;
     }
 
 }
