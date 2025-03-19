@@ -21,4 +21,12 @@ public class TodoService {
         todos.add(todo);
         return todos;
     }
+
+    public List<Todo> getTodos() {
+        return todos;
+    }
+
+    public Todo getTodo(int id){
+        return todos.stream().filter(todo -> todo.getId() == id).findAny().get();
+    }
 }

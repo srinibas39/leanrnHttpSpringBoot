@@ -6,11 +6,10 @@ import com.example.httpMethods.service.TodoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,13 +24,35 @@ public class TodoController {
     @Autowired
     TodoService todoService ;
 
+    //create todos
     @PostMapping("/todos")
-    public List<Todo> createTodos(@RequestBody Todo todo){
+    public ResponseEntity<List<Todo>> createTodos(@RequestBody Todo todo){
         logger.info("Create todo");
         List<Todo> todos =todoService.create(todo);
 
-        return todos;
-
+        ResponseEntity<List<Todo>> response = new ResponseEntity<>(todos, HttpStatus.CREATED);
+        return response;
 
     }
+
+    //get all todos
+
+    @GetMapping("/todos")
+    public ResponseEntity<List<Todo>> getAllTodos(){
+        logger.info("todo created");
+        List<Todo> todos = todoService.getTodos();
+        ResponseEntity<List<Todo>> response = new ResponseEntity<>(todos,HttpStatus.OK);
+        return response;
+    }
+
+
+    //get todod using id
+    @GetMapping("/todo/{id}")
+    public ResponseEntity<Todo> getTodo(@PathVariable("id") int id){
+        logger.info("get todo using id");
+        Todo todo = todoService.getTodo(id);
+        return new ResponseEntity<>(todo,HttpStatus.OK);
+    }
+
+
 }
