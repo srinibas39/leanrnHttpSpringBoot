@@ -54,5 +54,19 @@ public class TodoController {
         return new ResponseEntity<>(todo,HttpStatus.OK);
     }
 
+    @PutMapping("/todo/{id}")
+    public ResponseEntity<List<Todo>> updateTodoHandler(@RequestBody Todo todo,@PathVariable("id") int id){
+        logger.info("update todo using id");
+        List<Todo> todos = todoService.updateTodo(id,todo);
+        return new ResponseEntity<>(todos,HttpStatus.OK);
+
+    }
+    @DeleteMapping("/todo/{id}")
+    public ResponseEntity<List<Todo>> deleteTodoHandler(@PathVariable int id){
+       logger.info("delete todo using id");
+       List<Todo> todos = todoService.deleteTodo(id);
+       return new ResponseEntity<>(todos,HttpStatus.OK);
+    }
+
 
 }
