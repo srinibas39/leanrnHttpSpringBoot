@@ -4,6 +4,7 @@ package com.example.httpMethods.service;
 import com.example.httpMethods.model.Todo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -38,6 +39,7 @@ public class TodoService {
                 todo.setStatus(newTodo.getStatus());;
                 todo.setTitle(newTodo.getTitle());
                 todo.setId(random.nextInt(999999));
+                todo.setUpdatedAt(LocalDateTime.now());
             }
 
                 return todo;
