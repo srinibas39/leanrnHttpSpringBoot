@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/file")
@@ -45,4 +46,19 @@ public class TodoFilesController {
         }
 
     }
+
+    @PostMapping("/multiple")
+    public String handlingMulitpleFiles(@RequestParam("files") MultipartFile[] files){
+
+        Arrays.stream(files).forEach(file -> {
+            logger.info("Name {}", file.getName());
+            logger.info("Type {}",file.getContentType());
+            System.out.println("######################################");
+
+            //process the files store in the server
+        });
+
+        return "Multiple files handling";
+    }
+
 }
